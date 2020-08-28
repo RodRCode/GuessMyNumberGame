@@ -37,8 +37,7 @@ namespace GuessMyNumberGame
 
                 switch (keyInfo.Key)
                 {
-                    case ConsoleKey.D1: PrintSelection(menu);
-                        return (0);
+                    case ConsoleKey.D1: PrintSelection(menu); return (0);
                     case ConsoleKey.D2: PrintSelection(menu); return (1);
                     case ConsoleKey.D3: PrintSelection(menu); return (2);
                     case ConsoleKey.D4: PrintSelection(menu); return (3);
@@ -57,7 +56,6 @@ namespace GuessMyNumberGame
                     default:
                         break;
                 }
-
                 PrintSelection(menu);
             }
             while (!done);
@@ -69,30 +67,6 @@ namespace GuessMyNumberGame
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
             Console.WriteLine("Selected option: " + (menu.SelectedOption ?? "(nothing)"));
-        }
-
-        private static (bool, int) switchKey(ConsoleKeyInfo keyInfo, int selectedIndex, int countOfMenuItems)
-        {
-            bool selectInt = false;
-            int selection = selectedIndex;
-
-            switch (keyInfo.Key)
-            {
-
-                case ConsoleKey.D1: selectInt = true; selection = 0;break;
-                case ConsoleKey.D2: selectInt = true; selection = 1;break;
-                case ConsoleKey.D3: selectInt = true; selection = 2;break;
-                case ConsoleKey.D4: selectInt = true; selection = 3;break;
-                case ConsoleKey.D5: selectInt = true; selection = 4;break;
-                case ConsoleKey.D6: selectInt = true; selection = 5;break;
-                case ConsoleKey.D7: selectInt = true; selection = 6;break;
-                case ConsoleKey.D8: selectInt = true; selection = 7;break;
-                case ConsoleKey.D9: selectInt = true; selection = 8;break;
-                case ConsoleKey.D0: selectInt = true; selection = 9; break;
-                default: return (selectInt, selection);
-            }
-            return (selectInt, selection);
-
         }
     }
 

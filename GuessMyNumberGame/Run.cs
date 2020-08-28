@@ -20,7 +20,7 @@ namespace App
                 "2) You guess the computer's number from 1 to 1000",
                 "3) Human picks number from 1 to 100, computer guesses",
                 "4) Quit" };
-                Console.Clear();
+ //               Console.Clear();
                 Output.Intro();
                 int userChoice = Menu.Selection(menuItems, 0, Console.CursorTop + 1); // the two digits are to place the menu on the x and y axis
 
