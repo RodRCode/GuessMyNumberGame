@@ -37,36 +37,52 @@ namespace GuessMyNumberGame
 
                 switch (keyInfo.Key)
                 {
-                    case ConsoleKey.D1: PrintSelection(menu); return (0);
-                    case ConsoleKey.D2: PrintSelection(menu); return (1);
-                    case ConsoleKey.D3: PrintSelection(menu); return (2);
-                    case ConsoleKey.D4: PrintSelection(menu); return (3);
-                    case ConsoleKey.D5: PrintSelection(menu); return (4);
-                    case ConsoleKey.D6: PrintSelection(menu); return (5);
-                    case ConsoleKey.D7: PrintSelection(menu); return (6);
-                    case ConsoleKey.D8: PrintSelection(menu); return (7);
-                    case ConsoleKey.D9: PrintSelection(menu); return (8);
-                    case ConsoleKey.D0: PrintSelection(menu); return (9);
+                    case ConsoleKey.D1: ClearAndPrint(menu); return (0);
+                    case ConsoleKey.D2: ClearAndPrint(menu); return (1);
+                    case ConsoleKey.D3: ClearAndPrint(menu); return (2);
+                    case ConsoleKey.D4: ClearAndPrint(menu); return (3);
+                    case ConsoleKey.D5: ClearAndPrint(menu); return (4);
+                    case ConsoleKey.D6: ClearAndPrint(menu); return (5);
+                    case ConsoleKey.D7: ClearAndPrint(menu); return (6);
+                    case ConsoleKey.D8: ClearAndPrint(menu); return (7);
+                    case ConsoleKey.D9: ClearAndPrint(menu); return (8);
+                    case ConsoleKey.D0: ClearAndPrint(menu); return (9);
                     case ConsoleKey.UpArrow: menu.MoveUp(); break;
                     case ConsoleKey.DownArrow: menu.MoveDown(); break;
                     case ConsoleKey.Enter:
                         done = true;
-                        Console.ResetColor();
+                        ConsoleMenuPainter.TextColor();
                         return (menu.SelectedIndex);
                     default:
                         break;
                 }
-                PrintSelection(menu);
+                
+                ClearAndPrint(menu);                
             }
             while (!done);
 
+            ConsoleMenuPainter.TextColor();
             return (menu.SelectedIndex);
+        }
+
+        private static void ClearAndPrint(Menu menu)
+        {
+            ClearCurrentConsoleLine();
+            PrintSelection(menu);
+            ConsoleMenuPainter.TextColor();
         }
 
         private static void PrintSelection(Menu menu)
         {
             Console.ForegroundColor = ConsoleColor.Cyan;
-            Console.WriteLine("Selected option: " + (menu.SelectedOption ?? "(nothing)"));
+            Console.WriteLine("\nSelected option: " + (menu.SelectedOption ?? "(nothing)"));
+        }
+        private static void ClearCurrentConsoleLine() //handy to clear just a line, not the entire screen
+        {
+            int currentYPos = Console.CursorTop;
+            Console.SetCursorPosition(0, Console.CursorTop+1);
+            Console.Write(new string(' ', Console.WindowWidth));
+            Console.SetCursorPosition(0, currentYPos);
         }
     }
 
