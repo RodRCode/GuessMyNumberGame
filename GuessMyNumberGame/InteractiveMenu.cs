@@ -51,17 +51,16 @@ namespace GuessMyNumberGame
                     case ConsoleKey.DownArrow: menu.MoveDown(); break;
                     case ConsoleKey.Enter:
                         done = true;
-                        ConsoleMenuPainter.TextColor();
                         return (menu.SelectedIndex);
                     default:
                         break;
                 }
                 
-                ClearAndPrint(menu);                
+                ClearAndPrint(menu);
+                
             }
             while (!done);
 
-            ConsoleMenuPainter.TextColor();
             return (menu.SelectedIndex);
         }
 
@@ -69,7 +68,6 @@ namespace GuessMyNumberGame
         {
             ClearCurrentConsoleLine();
             PrintSelection(menu);
-            ConsoleMenuPainter.TextColor();
         }
 
         private static void PrintSelection(Menu menu)
@@ -79,6 +77,7 @@ namespace GuessMyNumberGame
         }
         private static void ClearCurrentConsoleLine() //handy to clear just a line, not the entire screen
         {
+            ConsoleMenuPainter.TextColor();
             int currentYPos = Console.CursorTop;
             Console.SetCursorPosition(0, Console.CursorTop+1);
             Console.Write(new string(' ', Console.WindowWidth));

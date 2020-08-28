@@ -13,7 +13,7 @@ namespace GuessMyNumberGame
         {
             ConsoleMenuPainter.TextColor();                       
 
-            Console.WriteLine("Welcome, this is a number guessing game");
+            Console.WriteLine("Welcome, this is a number guessing gaaaaame");
             Console.WriteLine("What would you like to do? (Make your selection with the \n" +
                 "arrow or number key and then hit enter)");
         }

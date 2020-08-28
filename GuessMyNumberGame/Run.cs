@@ -7,7 +7,9 @@ namespace App
     {
         public Run()
         {
+            Output.Intro();
             EventLoop();
+            Output.ClosingMessage();
         }
 
         private bool EventLoop()
