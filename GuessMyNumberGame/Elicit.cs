@@ -6,7 +6,7 @@ namespace GuessMyNumberGame
 {
     internal class Elicit
     {
-        internal static int WholeNumber()
+        internal static int WholeNumber(int min = 1, int max = 10)
         {
             int userChoice = 0;
             string numString = "";
@@ -19,11 +19,11 @@ namespace GuessMyNumberGame
                 try
                 {
                     userChoice = int.Parse(numString);
-                    if (userChoice > int.MaxValue || userChoice < 1)
+                    if (userChoice > min && userChoice < max)
                     {
                         Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine("That is not what we were looking for.  Please enter a number 1 to 2,147,483,647: ");
-                        Console.ResetColor();
+                        Console.WriteLine($"That is not what we were looking for.  Please enter a number {min} to {max}: ");
+                        ConsoleMenuPainter.TextColor();
                     }
                     else
                     {
@@ -33,8 +33,8 @@ namespace GuessMyNumberGame
                 catch (Exception)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine("That is not what we were looking for.  Please enter a number 1 to 2,147,483,647:");
-                    Console.ResetColor();
+                    Console.WriteLine($"That is not what we were looking for.  Please enter a number {min} to {max}: ");
+                    ConsoleMenuPainter.TextColor();
                 }
             } while (!done);
 

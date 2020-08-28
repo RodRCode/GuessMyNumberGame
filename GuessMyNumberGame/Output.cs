@@ -11,7 +11,7 @@ namespace GuessMyNumberGame
         //Intro text tells the user what this program does
         internal static void Intro()
         {
-            ConsoleMenuPainter.TextColor();
+            ConsoleMenuPainter.TextColor();                       
 
             Console.WriteLine("Welcome, this is a number guessing game");
             Console.WriteLine("What would you like to do? (Make your selection with the \n" +
