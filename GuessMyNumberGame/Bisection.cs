@@ -1,5 +1,6 @@
 ﻿using App;
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 
 namespace GuessMyNumberGame
@@ -9,9 +10,14 @@ namespace GuessMyNumberGame
         static int low;
         static int high;
         static int current;
+        static int lastCurrent;
         static int userNum;
+        static int numGuesses;
         internal static void CompGuess(int min, int max)
         {
+            lastCurrent = 0;
+            numGuesses = 0;
+            current = (max - min) / 2;
             Console.Clear();
             ConsoleMenuPainter.TextColor(15, 1);
             Console.WriteLine($"\nThe computer guesses your number from {min} to {max}\n");
@@ -22,28 +28,12 @@ namespace GuessMyNumberGame
             low = min;
             high = max;
             bool finished = false;
-            int count = 0;
             do
             {
-                BisectionSplit();
+                BisectionSplit(max);
                 finished = IsThisYourNumber();
-                /*
-                if (finished)
-                {
-                    if (current != userNum)
-                    {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"You changed your number! You said {userNum} originally!");
-                        ConsoleMenuPainter.TextColor();
-                        Console.Write($"Lets start over.  Hit any key to return to the main menu: ");
-                        Console.ReadKey();
-                        Run.EventLoop();
-                    }
-                }
-                */
-                count++;
             } while (!finished);
-            Console.WriteLine($"\nYour number was {current}, it took {count} times to guess it.");
+            Console.WriteLine($"\n\nYour number was {current}, it took {numGuesses} times to guess it.");
             Console.Write("Hit any key to go to the start menu");
             Console.ReadKey();
         }
@@ -58,15 +48,17 @@ namespace GuessMyNumberGame
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.N:
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("N");
+                        ConsoleMenuPainter.TextColor();
                         if (userNum == current)
                         {
+                            numGuesses++;
                             Console.ForegroundColor = ConsoleColor.Red;
                             Console.WriteLine($"\nYes it is! You said {userNum} originally!");
                             ConsoleMenuPainter.TextColor();
-                            Console.Write($"Lets start over, hit any key to return to the main menu: ");
-                            Console.ReadKey();
-                            Run.EventLoop();
+                            Console.Write($"Looks like I guessed it!  Cheater :)");
+                            return true;
                         }
                         Console.WriteLine();
                         String highlow = HighOrLow();
@@ -74,9 +66,11 @@ namespace GuessMyNumberGame
                         {
                             case "High":
                                 high = current;
+                                numGuesses++;
                                 return false;
                             case "Low":
                                 low = current;
+                                numGuesses++;
                                 return false;
                             case "Error":
                                 return false;
@@ -85,7 +79,9 @@ namespace GuessMyNumberGame
                         }
                         break;
                     case ConsoleKey.Y:
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("Y");
+                        ConsoleMenuPainter.TextColor();
                         if (current != userNum)
                         {
                             Console.ForegroundColor = ConsoleColor.Red;
@@ -95,6 +91,7 @@ namespace GuessMyNumberGame
                             Console.WriteLine();
                             return false;
                         }
+                        numGuesses++;
                         return true;
                     default:
                         break;
@@ -111,7 +108,9 @@ namespace GuessMyNumberGame
                 switch (keyInfo.Key)
                 {
                     case ConsoleKey.H:
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("H");
+                        ConsoleMenuPainter.TextColor();
                         Console.WriteLine();
                         if (userNum > current)
                         {
@@ -123,7 +122,9 @@ namespace GuessMyNumberGame
                         }
                         return "High";
                     case ConsoleKey.L:
+                        Console.ForegroundColor = ConsoleColor.Green;
                         Console.Write("L");
+                        ConsoleMenuPainter.TextColor();
                         Console.WriteLine();
                         if (userNum < current)
                         {
@@ -141,20 +142,15 @@ namespace GuessMyNumberGame
             while (true);
         }
 
-        private static void BisectionSplit()
+        private static void BisectionSplit(int max)
         {
+            lastCurrent = current;
             current = low + (high - low) / 2;
+            if (lastCurrent == current)
+            {
+                current++;
+            }
         }
-
-        internal static void CompGuess1to100()
-        {
-            Console.Clear();
-            ConsoleMenuPainter.TextColor(15, 1);
-            Console.WriteLine("\nHuman picks number from 1 to 100, computer guesses");
-            ConsoleMenuPainter.TextColor();
-            Console.ReadLine();
-        }
-
         internal static void HumnGuess1to1000()
         {
             Console.Clear();

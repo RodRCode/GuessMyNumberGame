@@ -72,7 +72,7 @@ namespace GuessMyNumberGame
 
         private static void PrintSelection(Menu menu)
         {
-            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine("\nSelected option: " + (menu.SelectedOption ?? "(nothing)"));
         }
         private static void ClearCurrentConsoleLine() //handy to clear just a line, not the entire screen

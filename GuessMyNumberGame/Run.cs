@@ -20,7 +20,7 @@ namespace App
                 string[] menuItems = new string[] {
                 "1) The computer guesses your number from 1 to 10",
                 "2) You guess the computer's number from 1 to 1000",
-                "3) Human picks number from 1 to 100, computer guesses",
+                "3) The computer guesses your number from 1 to 100",
                 "4) Quit" };
                 Console.Clear();
                 Output.Intro();

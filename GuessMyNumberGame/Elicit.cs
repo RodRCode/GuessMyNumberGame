@@ -14,13 +14,13 @@ namespace GuessMyNumberGame
             bool done = false;
             do
             {
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.Green;
                 numString = Console.ReadLine();
                 ConsoleMenuPainter.TextColor();
                 try
                 {
                     userChoice = int.Parse(numString);
-                    if (userChoice > min && userChoice < max)
+                    if (userChoice >= min && userChoice <= max)
                     {
                         done = true;
                     }
