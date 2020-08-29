@@ -6,6 +6,7 @@ namespace GuessMyNumberGame
 {
     internal class Elicit
     {
+        // Checkes to make sure the whole number input is in a valid range
         internal static int WholeNumber(int min = 1, int max = 10)
         {
             int userChoice = 0;

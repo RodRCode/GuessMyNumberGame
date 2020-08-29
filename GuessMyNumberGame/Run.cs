@@ -12,6 +12,7 @@ namespace App
             Output.ClosingMessage();
         }
 
+        // This is the main loop where the menu selection and branching occurs from
         static public bool EventLoop()
         {
             bool finished = false;

@@ -13,6 +13,8 @@ namespace GuessMyNumberGame
         static int lastCurrent;
         static int userNum;
         static int numGuesses;
+
+        // This is the method where the computer guesses, no magic numbers here, can accept any Int32 valid input
         internal static void CompGuess(int min, int max)
         {
             lastCurrent = 0;
@@ -41,6 +43,7 @@ namespace GuessMyNumberGame
             Console.ReadKey();
         }
 
+        // This gets user defined values for the computer to guess between
         internal static void UserValues()
         {
             Console.Clear();
@@ -54,6 +57,7 @@ namespace GuessMyNumberGame
             CompGuess(min, max);
         }
 
+        // This gets the user defined values for the user to guess between
         internal static void UserValuesHumanGuess()
         {
             Console.Clear();
@@ -67,6 +71,7 @@ namespace GuessMyNumberGame
             HumanGuesses(min, max);
         }
 
+        // Business logic of the user guessing what the number is
         internal static void HumanGuesses(int low, int high)
         {
             Random rand = new Random();
@@ -107,6 +112,7 @@ namespace GuessMyNumberGame
             } while (!done);
         }
 
+        // Check to see if this is the right number guessed, error checking included for edge cases and "cheating"
         private static bool IsThisYourNumber()
         {
             Console.Write($"Is {current} your number? (Y/N): ");
@@ -168,6 +174,7 @@ namespace GuessMyNumberGame
             } while (true);
         }
 
+        // Checks the high/low values with error checking for "cheating"
         private static string HighOrLow()
         {
             Console.Write($"The number {current} was not your number. Was it High or Low? (H/L): ");
@@ -211,6 +218,7 @@ namespace GuessMyNumberGame
             while (true);
         }
 
+        // Does the work on actually conducting the bisection split and has logic in there for checking edge case of the value being searched for being the highest possible value
         private static void BisectionSplit(int max)
         {
             lastCurrent = current;
