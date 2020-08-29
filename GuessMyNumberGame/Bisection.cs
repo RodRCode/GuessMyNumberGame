@@ -54,10 +54,21 @@ namespace GuessMyNumberGame
             CompGuess(min, max);
         }
 
-        internal static void HumanGuesses()
+        internal static void UserValuesHumanGuess()
         {
-            low = 1;
-            high = 1000;
+            Console.Clear();
+            ConsoleMenuPainter.TextColor(15, 1);
+            Console.WriteLine("You enter the limit numbers, computer picks and you guess");
+            ConsoleMenuPainter.TextColor();
+            Console.Write("\nEnter the lower: ");
+            int min = Elicit.WholeNumber(int.MinValue + 2, int.MaxValue - 1);
+            Console.Write("\nEnter the upper number: ");
+            int max = Elicit.WholeNumber(min + 1, int.MaxValue);
+            HumanGuesses(min, max);
+        }
+
+        internal static void HumanGuesses(int low, int high)
+        {
             Random rand = new Random();
             int compNum = rand.Next(low, high + 1);
             bool done = false;
@@ -65,9 +76,9 @@ namespace GuessMyNumberGame
 
             Console.Clear();
             ConsoleMenuPainter.TextColor(15, 1);
-            Console.WriteLine("\nYou guess the computer's number from 1 to 1000");
+            Console.WriteLine($"\nYou guess the computer's number from {low} to {high}");
             ConsoleMenuPainter.TextColor();
-            Console.WriteLine("OK, I have guessed my number from 1 to 1000!");
+            Console.WriteLine($"OK, I have guessed my number from {low} to {high}!");
 
             do
             {

@@ -22,7 +22,8 @@ namespace App
                 "2) You guess the computer's number from 1 to 1000",
                 "3) The computer guesses your number from 1 to 100",
                 "4) You enter the numbers you want the computer to guess between",
-                "5) Quit" };
+                "5) You enter the limit numbers, computer picks and you guess",
+                "6) Quit" };
                 Console.Clear();
                 Output.Intro();
                 int userChoice = Menu.Selection(menuItems, 0, Console.CursorTop + 1); // the two digits are to place the menu on the x and y axis
@@ -33,7 +34,7 @@ namespace App
                         Bisection.CompGuess(1,10);                        
                         break;
                     case 1:
-                        Bisection.HumanGuesses();
+                        Bisection.HumanGuesses(1, 1000);
                         break;
                     case 2:
                         Bisection.CompGuess(1, 100);
@@ -42,6 +43,9 @@ namespace App
                         Bisection.UserValues();
                         break;
                     case 4:
+                        Bisection.UserValuesHumanGuess();
+                        break;
+                    case 5:
                         Console.Clear();
                         Console.WriteLine("Quit");
                         finished = true;

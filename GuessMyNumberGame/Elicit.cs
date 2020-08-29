@@ -41,21 +41,5 @@ namespace GuessMyNumberGame
 
             return userChoice;
         }
-
-        // Generates the choices for the "What Now" menu and then activates it
-        internal static int WhatNowMenu(int x = 0, int y = 0)
-        {
-            string[] whatNowChoices = new string[]
-            {
-            "1) ",
-            "2) ",
-            "3) ",
-            "4) "
-            };
-            Console.WriteLine("What would you like to do? (Make your selection with the \n" +
-                "arrow key or number key then hit enter)");
-            int userChoice = Menu.Selection(whatNowChoices, x, y);
-            return userChoice;
-        }
     }
 }
