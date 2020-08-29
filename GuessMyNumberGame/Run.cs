@@ -32,7 +32,7 @@ namespace App
                         Bisection.CompGuess(1,10);                        
                         break;
                     case 1:
-                        Bisection.HumnGuess1to1000();
+                        Bisection.HumanGuesses();
                         break;
                     case 2:
                         Bisection.CompGuess(1, 100);

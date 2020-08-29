@@ -33,9 +33,52 @@ namespace GuessMyNumberGame
                 BisectionSplit(max);
                 finished = IsThisYourNumber();
             } while (!finished);
+            ConsoleMenuPainter.TextColor(15, 1);
             Console.WriteLine($"\n\nYour number was {current}, it took {numGuesses} times to guess it.");
+            ConsoleMenuPainter.TextColor();
             Console.Write("Hit any key to go to the start menu");
             Console.ReadKey();
+        }
+        internal static void HumanGuesses()
+        {
+            low = 1;
+            high = 1000;
+            Random rand = new Random();
+            int compNum = rand.Next(low, high + 1);
+            bool done = false;
+            numGuesses = 0;
+
+            Console.Clear();
+            ConsoleMenuPainter.TextColor(15, 1);
+            Console.WriteLine("\nYou guess the computer's number from 1 to 1000");
+            ConsoleMenuPainter.TextColor();
+            Console.WriteLine("OK, I have guessed my number from 1 to 1000!");
+
+            do
+            {
+                Console.Write($"Whole numbers from {low} to {high}, what is your guess: ");
+                userNum = Elicit.WholeNumber(low, high);
+                numGuesses++;
+                Console.WriteLine();
+                if (userNum == compNum)
+                {
+                    ConsoleMenuPainter.TextColor(15, 1);
+                    Console.WriteLine($"Good guess! My number was {compNum}.");
+                    Console.WriteLine($"You got it in {numGuesses} guesses.");
+                    ConsoleMenuPainter.TextColor();
+                    Console.WriteLine("Hit any key to continue back to the main menu.");
+                    Console.ReadKey();
+                    done = true;
+                }
+                if (userNum > compNum)
+                {
+                    Console.WriteLine($"Your guess of {userNum} was too high");
+                }
+                if (userNum < compNum)
+                {
+                    Console.WriteLine($"Your guess of {userNum} was too low");
+                }
+            } while (!done);
         }
 
         private static bool IsThisYourNumber()
@@ -150,14 +193,6 @@ namespace GuessMyNumberGame
             {
                 current++;
             }
-        }
-        internal static void HumnGuess1to1000()
-        {
-            Console.Clear();
-            ConsoleMenuPainter.TextColor(15, 1);
-            Console.WriteLine("\nYou guess the computer's number from 1 to 1000");
-            ConsoleMenuPainter.TextColor();
-            Console.ReadLine();
         }
     }
 }
