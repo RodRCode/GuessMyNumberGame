@@ -33,12 +33,27 @@ namespace GuessMyNumberGame
                 BisectionSplit(max);
                 finished = IsThisYourNumber();
             } while (!finished);
+            Console.WriteLine("\n\n");
             ConsoleMenuPainter.TextColor(15, 1);
-            Console.WriteLine($"\n\nYour number was {current}, it took {numGuesses} times to guess it.");
+            Console.Write($"Your number was {current}, it took {numGuesses} times to guess it.");
             ConsoleMenuPainter.TextColor();
-            Console.Write("Hit any key to go to the start menu");
+            Console.Write("\nHit any key to go to the start menu");
             Console.ReadKey();
         }
+
+        internal static void UserValues()
+        {
+            Console.Clear();
+            ConsoleMenuPainter.TextColor(15, 1);
+            Console.WriteLine("The computer guesses your number from values you define");
+            ConsoleMenuPainter.TextColor();
+            Console.Write("\nEnter the lower: ");
+            int min = Elicit.WholeNumber(int.MinValue+2, int.MaxValue-1);
+            Console.Write("\nEnter the upper number: ");
+            int max = Elicit.WholeNumber(min + 1, int.MaxValue);
+            CompGuess(min, max);
+        }
+
         internal static void HumanGuesses()
         {
             low = 1;
@@ -188,7 +203,15 @@ namespace GuessMyNumberGame
         private static void BisectionSplit(int max)
         {
             lastCurrent = current;
-            current = low + (high - low) / 2;
+
+            if (low < 0 && high > 0)
+            {
+                current = (high + low) / 2;
+            }
+            else
+            {
+                current = low + (high - low) / 2;
+            }
             if (lastCurrent == current)
             {
                 current++;
