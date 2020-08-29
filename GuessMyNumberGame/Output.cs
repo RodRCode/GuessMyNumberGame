@@ -23,6 +23,7 @@ namespace GuessMyNumberGame
         {
             Console.Clear();
             Console.WriteLine("\n\nThanks! Have a Great day!\n\n\n");
+            ConsoleMenuPainter.TextColor();
         }
     }
 
