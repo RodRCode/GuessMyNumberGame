@@ -14,26 +14,27 @@ namespace GuessMyNumberGame
             bool done = false;
             do
             {
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
                 numString = Console.ReadLine();
-
+                ConsoleMenuPainter.TextColor();
                 try
                 {
                     userChoice = int.Parse(numString);
                     if (userChoice > min && userChoice < max)
                     {
-                        Console.ForegroundColor = ConsoleColor.Red;
-                        Console.WriteLine($"That is not what we were looking for.  Please enter a number {min} to {max}: ");
-                        ConsoleMenuPainter.TextColor();
+                        done = true;
                     }
                     else
                     {
-                        done = true;
+                        Console.ForegroundColor = ConsoleColor.Red;
+                        Console.Write($"That is not what we were looking for.  Please enter a number {min} to {max}: ");
+                        ConsoleMenuPainter.TextColor();
                     }
                 }
                 catch (Exception)
                 {
                     Console.ForegroundColor = ConsoleColor.Red;
-                    Console.WriteLine($"That is not what we were looking for.  Please enter a number {min} to {max}: ");
+                    Console.Write($"That is not what we were looking for.  Please enter a number {min} to {max}: ");
                     ConsoleMenuPainter.TextColor();
                 }
             } while (!done);

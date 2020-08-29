@@ -12,7 +12,7 @@ namespace App
             Output.ClosingMessage();
         }
 
-        private bool EventLoop()
+        static public bool EventLoop()
         {
             bool finished = false;
             do
@@ -29,13 +29,13 @@ namespace App
                 switch (userChoice)
                 {
                     case 0:
-                        Bisection.CompGuess1to10();                        
+                        Bisection.CompGuess(1,10);                        
                         break;
                     case 1:
                         Bisection.HumnGuess1to1000();
                         break;
                     case 2:
-                        Bisection.CompGuess1to100();
+                        Bisection.CompGuess(1, 100);
                         break;
                     case 3:
                         Console.Clear();
@@ -51,9 +51,5 @@ namespace App
 
             return finished;
         }
-
-
-
-
     }
 }
